@@ -16,6 +16,7 @@ from QDTA_RC.netw_loading_test_networks import (
     single_path_network,
 )
 from QDTA_RC.grid_networks import grid_network
+from QDTA_RC.purc_test_networks import toy_network
 from QDTA_RC.qdta_loading_test_networks import two_parallel_routes_network
 
 __all__ = [
@@ -25,5 +26,6 @@ __all__ = [
     "simple_merge_network",
     "single_path_corridor_network",
     "single_path_network",
+    "toy_network",
     "two_parallel_routes_network",
 ]
