@@ -19,7 +19,6 @@ def grid_network(
     N: int, 
     M: int, 
     num_od_pairs: int = 1,
-    compute_paths: bool = True,
     demand_min: Optional[float] = None,
     demand_max: Optional[float] = None,
     demand_mean: Optional[float] = None,
@@ -41,9 +40,6 @@ def grid_network(
     - N: Number of rows
     - M: Number of columns
     - num_od_pairs: Number of OD pairs to generate (default: 1)
-    - compute_paths: kept for backward compatibility; if True, the network is
-      returned without paths and the caller runs a FlowAssignment
-      (all-or-nothing on shortest paths) before the network loading
     - demand_min: Minimum demand value for capped Gaussian distribution (default: None)
     - demand_max: Maximum demand value for capped Gaussian distribution (default: None)
     - demand_mean: Mean of Gaussian distribution for demand (default: None)

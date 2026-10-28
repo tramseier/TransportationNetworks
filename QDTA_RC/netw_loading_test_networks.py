@@ -15,10 +15,7 @@ import pandas as pd
 from QDTA.network import Network
 
 
-def example_1_network(compute_paths: bool = False) -> Network:
-    """Note: compute_paths=True performs an all-or-nothing assignment
-    (shortest path per OD pair) via FlowAssignment; the caller then runs
-    the network loading with the resulting path demands."""
+def example_1_network() -> Network:
     """
     Create the network from Example 1 in the paper (Fig. 6).
     
@@ -81,20 +78,10 @@ def example_1_network(compute_paths: bool = False) -> Network:
         10: (-4, 5)      # A_start
     }
 
-    if not compute_paths:
-        # Add paths using link indices (0-based)
-        # Original: network.add_path("p1", "A_start", "A'", link_sequence=["9", "1", "3", "4", "5", "8"])
-        # Link mapping: "9"->8, "1"->0, "3"->2, "4"->3, "5"->4, "8"->7
-        network.add_path("p1", 10, 6, link_sequence=[8, 0, 2, 3, 4, 7])
-        
-        # Original: network.add_path("p2", "B_start", "B'", link_sequence=["10", "4", "6", "1", "2", "7"])
-        # Link mapping: "10"->9, "4"->3, "6"->5, "1"->0, "2"->1, "7"->6
-        network.add_path("p2", 9, 5, link_sequence=[9, 3, 5, 0, 1, 6])
-    
     return network
 
 
-def simple_merge_network(compute_paths) -> Network:
+def simple_merge_network() -> Network:
     """
     Create a simple merge network for testing.
     
@@ -122,15 +109,10 @@ def simple_merge_network(compute_paths) -> Network:
     
     network = Network(network_df, demand_df)
     
-    # Add paths
-    if not compute_paths:
-        network.add_path("p1", 0, 3, link_sequence=[0, 2])  # A->C->D (original links "1", "3")
-        network.add_path("p2", 1, 3, link_sequence=[1, 2])  # B->C->D (original links "2", "3")
-        
     return network
 
 
-def single_path_network(compute_paths: bool = False) -> Network:
+def single_path_network() -> Network:
     """
     Create a simple single path network with a bottleneck.
     
@@ -150,14 +132,10 @@ def single_path_network(compute_paths: bool = False) -> Network:
     
     network = Network(network_df, demand_df)
     
-    # Add paths
-    if not compute_paths:
-        network.add_path("p1", 0, 2, link_sequence=[0, 1])
-    
     return network
 
 
-def single_path_corridor_network(compute_paths: bool = False) -> Network:
+def single_path_corridor_network() -> Network:
     """
     Create a simple single path network corridor with multiple bottlenecks.
     """
@@ -184,13 +162,10 @@ def single_path_corridor_network(compute_paths: bool = False) -> Network:
         3: (6, 0),
         4: (8, 0)
     }
-    if not compute_paths:
-        network.add_path("p1", 0, 4, link_sequence=[0, 1, 2, 3])
-    
     return network
 
 
-def bidirectional_corridor_network(compute_paths: bool = False) -> Network:
+def bidirectional_corridor_network() -> Network:
     """
     Create a simple bidirectional corridor network with multiple bottlenecks.
     """
